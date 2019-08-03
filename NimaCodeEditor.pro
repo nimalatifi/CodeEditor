@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         highlighter.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        myplaintextedit.cpp
 
 HEADERS += \
         highlighter.h \
-        mainwindow.h
+        mainwindow.h \
+        myplaintextedit.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

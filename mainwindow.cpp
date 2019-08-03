@@ -61,7 +61,7 @@ void MainWindow::setupEditor()
     font.setFamily("Courier");
     font.setFixedPitch(true);
     font.setPointSize(10);
-    editor = new QPlainTextEdit;
+    editor = new MyPlainTextEdit;
     editor->setFont(font);
 
     int tabstop = 4;

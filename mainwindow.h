@@ -22,6 +22,7 @@ QT_BEGIN_NAMESPACE
 class QTextEdit;
 QT_END_NAMESPACE
 
+#include "myplaintextedit.h"
 
 class MainWindow : public QMainWindow
 {
@@ -30,7 +31,7 @@ private:
     void setupEditor();
     void setupFileMenu();
     void setupHelpMenu();
-    QPlainTextEdit *editor,*editor2;
+    MyPlainTextEdit *editor,*editor2;
     Highlighter *highlighter;
     QString text,tmpString,str;
     struct node{
@@ -520,7 +521,7 @@ public:
                     tabString+="\n";
                     for (int i=0;i<tabCount-1;i++)
                     {
-                        tabString+="    ";
+                         tabString+="    ";
                     }
                 }
                 else
