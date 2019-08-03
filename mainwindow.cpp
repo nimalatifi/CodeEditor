@@ -64,6 +64,19 @@ void MainWindow::setupEditor()
     editor = new QPlainTextEdit;
     editor->setFont(font);
 
+    int tabstop = 4;
+    QFontMetricsF fm (editor->font());
+    auto stopWidth = tabstop * fm.width(' ');
+    auto letterSpacing = (ceil(stopWidth) - stopWidth) / tabstop;
+   // auto font = editor->font();
+    font.setLetterSpacing(QFont::AbsoluteSpacing, letterSpacing);
+    editor->setFont(font);
+    editor->setTabStopWidth(ceil(stopWidth));
+
+
+
+
+
     // added by nima
     //QColor color = QColorDialog::getColor(Qt::gray,this); // in here your color pallete will open..
     QColor color =QColor(240, 240, 240);
