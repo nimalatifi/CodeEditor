@@ -322,11 +322,11 @@ public:
         CommentRuleVector.append(commentRule);
 
         /* qutaition*/
-        commentRule.pattern= QRegularExpression(QStringLiteral("\".*\""));
+        commentRule.pattern= QRegularExpression(QStringLiteral("\"(.*?)\""));
         CommentRuleVector.append(commentRule);
 
         /* singleQutaition*/
-        commentRule.pattern= QRegularExpression(QStringLiteral("\'.*\'"));
+        commentRule.pattern= QRegularExpression(QStringLiteral("\'(.*?)\'"));
         CommentRuleVector.append(commentRule);
 
 

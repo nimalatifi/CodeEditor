@@ -313,13 +313,13 @@ Highlighter::Highlighter(QTextDocument *parent)
 
     /*   quotationFormat  */
     quotationFormat.setForeground(Qt::darkGreen);
-    rule.pattern = QRegularExpression(QStringLiteral("\".*\""));
+    rule.pattern = QRegularExpression(QStringLiteral("\"(.*?)\""));
     rule.format = quotationFormat;
     highlightingRules.append(rule);
 
     /*  singleQuotationFormat  */
     quotationFormat.setForeground(Qt::darkGreen);
-    rule.pattern = QRegularExpression(QStringLiteral("\'.*\'"));
+    rule.pattern = QRegularExpression(QStringLiteral("\'(.*?)\'"));
     rule.format = quotationFormat;
     highlightingRules.append(rule);
 
