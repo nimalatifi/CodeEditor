@@ -68,7 +68,7 @@ void MainWindow::setupEditor()
     QFontMetricsF fm (editor->font());
     auto stopWidth = tabstop * fm.width(' ');
     auto letterSpacing = (ceil(stopWidth) - stopWidth) / tabstop;
-   // auto font = editor->font();
+    // auto font = editor->font();
     font.setLetterSpacing(QFont::AbsoluteSpacing, letterSpacing);
     editor->setFont(font);
     editor->setTabStopWidth(ceil(stopWidth));
@@ -136,7 +136,7 @@ void MainWindow::myTextChanged()
         newTextLenght=0;
     }
 
-editor->blockSignals(oldState);
+    editor->blockSignals(oldState);
 }
 
 

@@ -167,7 +167,7 @@ Highlighter::Highlighter(QTextDocument *parent)
 
 
     /* fundamental Types */
-   fundamentalTypes.setForeground(QColor(163,155,8));
+    fundamentalTypes.setForeground(QColor(163,155,8));
     const QString fundamentalTypesPatterns[]={
         QStringLiteral("\\b(?i)scalar\\b"),
         QStringLiteral("\\b(?i)vector\\b"),
@@ -193,7 +193,7 @@ Highlighter::Highlighter(QTextDocument *parent)
         QStringLiteral("\\b(?i)or\\b"),
         QStringLiteral("\\b(?i)xor\\b"),
         QStringLiteral("\\b(?i)xnor\\b"),
-       /* QStringLiteral("\\b&\\b"),
+        /* QStringLiteral("\\b&\\b"),
         QStringLiteral("\\b|\\b")*/
     };
     for (const QString &pattern : booleanOperatorsPatterns) {
@@ -202,8 +202,8 @@ Highlighter::Highlighter(QTextDocument *parent)
         highlightingRules.append(rule);
     }
 
-    /* IO Package */
-    IOpackage.setForeground(QColor(17, 102, 240));
+        /* IO Package */
+        IOpackage.setForeground(QColor(17, 102, 240));
     const QString IOpackagePatterns[]={
 
         /* File I/O function */
@@ -242,7 +242,7 @@ Highlighter::Highlighter(QTextDocument *parent)
         QStringLiteral("\\baxpbz\\b"),
         QStringLiteral("\\bdot\\b"),
         QStringLiteral("\\bdotk\\b"),
-    };
+        };
     for (const QString &pattern : IOpackagePatterns) {
         rule.pattern = QRegularExpression(pattern);
         rule.format = IOpackage;
@@ -264,7 +264,7 @@ Highlighter::Highlighter(QTextDocument *parent)
         QStringLiteral("\\b(?i)break\\b"),
         QStringLiteral("\\b(?i)continue\\b"),
         QStringLiteral("\\b(?i)return\\b")
-       /* QStringLiteral("?:"),
+        /* QStringLiteral("?:"),
         QStringLiteral("~"),
         QStringLiteral("*"),
         QStringLiteral("[]"),*/
@@ -349,42 +349,42 @@ void Highlighter::highlightBlock(const QString &text )
         }
     }
 
-        setCurrentBlockState(0);
+    setCurrentBlockState(0);
 
-        int startIndex = 0;
-        if (previousBlockState() != 1)
-            startIndex = text.indexOf(commentStartExpression);
+    int startIndex = 0;
+    if (previousBlockState() != 1)
+        startIndex = text.indexOf(commentStartExpression);
 
-        while (startIndex >= 0) {
-            QRegularExpressionMatch match = commentEndExpression.match(text, startIndex);
-            int endIndex = match.capturedStart();
-            int commentLength = 0;
-            if (endIndex == -1) {
-                setCurrentBlockState(1);
-                commentLength = text.length() - startIndex;
-            } else {
-                commentLength = endIndex - startIndex
-                                + match.capturedLength();
-            }
-            setFormat(startIndex, commentLength, multiLineCommentFormat);
-            startIndex = text.indexOf(commentStartExpression, startIndex + commentLength);
+    while (startIndex >= 0) {
+        QRegularExpressionMatch match = commentEndExpression.match(text, startIndex);
+        int endIndex = match.capturedStart();
+        int commentLength = 0;
+        if (endIndex == -1) {
+            setCurrentBlockState(1);
+            commentLength = text.length() - startIndex;
+        } else {
+            commentLength = endIndex - startIndex
+                            + match.capturedLength();
         }
+        setFormat(startIndex, commentLength, multiLineCommentFormat);
+        startIndex = text.indexOf(commentStartExpression, startIndex + commentLength);
+    }
 
 
 
 
 
 
-//        setCurrentBlockState(0);
+    //        setCurrentBlockState(0);
 
-//        for (const HighlightingRule &brace : qAsConst(braceRules)) {
-//            QRegularExpressionMatchIterator matchIterator = brace.pattern.globalMatch(text);
-//            while (matchIterator.hasNext()) {
-//                QRegularExpressionMatch match = matchIterator.next();
-//                qDebug()<< currentBlock().position();
+    //        for (const HighlightingRule &brace : qAsConst(braceRules)) {
+    //            QRegularExpressionMatchIterator matchIterator = brace.pattern.globalMatch(text);
+    //            while (matchIterator.hasNext()) {
+    //                QRegularExpressionMatch match = matchIterator.next();
+    //                qDebug()<< currentBlock().position();
 
-//            }
-//        }
+    //            }
+    //        }
 
 
 

@@ -350,33 +350,33 @@ public:
             }
         }
 
-                int startIndex = 0, j=0;
-                startIndex = strTmp.indexOf(commentStartExpression);
-                while (startIndex >= 0 and startIndex<strTmp.length()) {
-                    QRegularExpressionMatch match = commentEndExpression.match(strTmp, startIndex);
-                    int endIndex = match.capturedStart();
-                    int commentLength = 0;
-                    if (endIndex == -1)
-                    {
-                        commentLength = strTmp.length() - startIndex;
+        int startIndex = 0, j=0;
+        startIndex = strTmp.indexOf(commentStartExpression);
+        while (startIndex >= 0 and startIndex<strTmp.length()) {
+            QRegularExpressionMatch match = commentEndExpression.match(strTmp, startIndex);
+            int endIndex = match.capturedStart();
+            int commentLength = 0;
+            if (endIndex == -1)
+            {
+                commentLength = strTmp.length() - startIndex;
 
-                        for( j=startIndex;j<strTmp.length();j++)
-                        {
-                            strTmp.replace(j,1,"0");
-                        }
-
-                        break;
-                    }
-                    else
-                    {
-                        commentLength = endIndex - startIndex+ match.capturedLength();
-//                        for( j=startIndex;j<=startIndex + commentLength;j++)
-//                        {
-//                            strTmp.replace(j,1,"0");
-//                        }
-                    }
-                    startIndex = strTmp.indexOf(commentStartExpression, startIndex + commentLength);
+                for( j=startIndex;j<strTmp.length();j++)
+                {
+                    strTmp.replace(j,1,"0");
                 }
+
+                break;
+            }
+            else
+            {
+                commentLength = endIndex - startIndex+ match.capturedLength();
+                //                        for( j=startIndex;j<=startIndex + commentLength;j++)
+                //                        {
+                //                            strTmp.replace(j,1,"0");
+                //                        }
+            }
+            startIndex = strTmp.indexOf(commentStartExpression, startIndex + commentLength);
+        }
         return strTmp;
     }
 
@@ -452,7 +452,7 @@ public:
     void braketMatching()
     {
         newTextLenght=editor->toPlainText().length();
-      //  oldState = editor->blockSignals(true);
+        //  oldState = editor->blockSignals(true);
         tmpCursor=editor->textCursor();
         format= editor->QPlainTextEdit::currentCharFormat();
         format.setBackground(QColor(240,240,240,255));
@@ -570,7 +570,7 @@ public:
                 newTextLenght=editor->toPlainText().length();
             }
         }
-       // editor->blockSignals(oldState);
+        // editor->blockSignals(oldState);
 
         textLenght=newTextLenght;
 
@@ -592,7 +592,7 @@ public:
                 tmpCursor.setPosition(lastCursorPosition);
                 editor->setTextCursor(tmpCursor);
                 braketMatching();
-               // refreshGlobalVector(editor);
+                // refreshGlobalVector(editor);
                 cursurPosFlag=false;
             }
 
