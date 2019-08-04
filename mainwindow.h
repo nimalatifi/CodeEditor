@@ -343,7 +343,7 @@ public:
             QRegularExpressionMatchIterator matchIterator = commentRule.pattern.globalMatch(strTmp);
             while (matchIterator.hasNext()) {
                 QRegularExpressionMatch match = matchIterator.next();
-                for(int i=match.capturedStart();i<=match.capturedEnd();i++)
+                for(int i=match.capturedStart();i<=match.capturedEnd()-1;i++)
                 {
                     strTmp.replace(i,1,"0");
                 }
