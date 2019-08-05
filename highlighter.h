@@ -102,6 +102,7 @@ private:
     QTextCharFormat IOpackage;
     QTextCharFormat digit;
     QTextCharFormat assignment;
+     QTextCharFormat hashTagCommentFormat;
 
 
 

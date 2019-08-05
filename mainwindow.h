@@ -329,10 +329,16 @@ public:
         commentRule.pattern= QRegularExpression(QStringLiteral("\'(.*?)\'"));
         CommentRuleVector.append(commentRule);
 
+        /* hashTag Comment*/
+        commentRule.pattern= QRegularExpression(QStringLiteral("#[^\n]*"));
+        CommentRuleVector.append(commentRule);
+
 
         /* multi line Comment Format */
         commentRule.pattern = QRegularExpression(QStringLiteral("/\\*([^*]|[\r\n]|(\\*+([^*/]|[\r\n])))*\\*+/"));
         CommentRuleVector.append(commentRule);
+
+
 
         commentStartExpression = QRegularExpression(QStringLiteral("/\\*"));
         commentEndExpression = QRegularExpression(QStringLiteral("\\*/"));

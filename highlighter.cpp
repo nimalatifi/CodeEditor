@@ -329,6 +329,12 @@ Highlighter::Highlighter(QTextDocument *parent)
     rule.format = singleLineCommentFormat;
     highlightingRules.append(rule);
 
+    /* hashTagCommentFormat*/
+    hashTagCommentFormat.setForeground(Qt::darkGreen);
+    rule.pattern = QRegularExpression(QStringLiteral("#[^\n]*"));
+    rule.format = hashTagCommentFormat;
+    highlightingRules.append(rule);
+
     /* multi line Comment Format */
     multiLineCommentFormat.setForeground(Qt::darkGreen);
     commentStartExpression = QRegularExpression(QStringLiteral("/\\*"));
