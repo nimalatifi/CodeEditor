@@ -1,0 +1,22 @@
+NIMACodeEditor v 1.3.0
+
+This a Qt based Code editor. 
+
+## Requirements
+0. C++11 featured compiler.
+0. Qt 5.
+
+## Abilities
+1. Auto parentheses.
+1. Different highlight rules.
+1. Auto indentation.
+1. Replace tabs with spaces.
+1. GLSL completion rules.
+1. GLSL highlight rules.
+1. C++ highlight rules.
+1. XML highlight rules.
+1. JSON highligh rules.
+1. Frame selection.
+1. Qt Creator styles.
+
+

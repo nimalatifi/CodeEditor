@@ -1,52 +1,10 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
-** Contact: https://www.qt.io/licensing/
+** Copyright (C) 2019 The Nima Latifi.
+** Contact: nima.latifi@gmail.com
 **
-** This file is part of the examples of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:BSD$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see https://www.qt.io/terms-conditions. For further
-** information use the contact form at https://www.qt.io/contact-us.
-**
-** BSD License Usage
-** Alternatively, you may use this file under the terms of the BSD license
-** as follows:
-**
-** "Redistribution and use in source and binary forms, with or without
-** modification, are permitted provided that the following conditions are
-** met:
-**   * Redistributions of source code must retain the above copyright
-**     notice, this list of conditions and the following disclaimer.
-**   * Redistributions in binary form must reproduce the above copyright
-**     notice, this list of conditions and the following disclaimer in
-**     the documentation and/or other materials provided with the
-**     distribution.
-**   * Neither the name of The Qt Company Ltd nor the names of its
-**     contributors may be used to endorse or promote products derived
-**     from this software without specific prior written permission.
-**
-**
-** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-**
-** $QT_END_LICENSE$
-**
-****************************************************************************/
+** This software is a code editor base on exprTK liabrary's keywords.
+******************************************************************************/
 
 #include "highlighter.h"
 #include <QDebug>
@@ -56,7 +14,6 @@ Highlighter::Highlighter(QTextDocument *parent)
     : QSyntaxHighlighter(parent)
 {
     HighlightingRule rule;
-
 
     /* keywordFormat */
     keywordFormat.setForeground(Qt::darkBlue);
@@ -70,7 +27,6 @@ Highlighter::Highlighter(QTextDocument *parent)
         highlightingRules.append(rule);
 
     }
-
 
     /* mathFunction */
     mathFunction.setForeground(QColor(194, 171, 0));
@@ -140,6 +96,7 @@ Highlighter::Highlighter(QTextDocument *parent)
         QStringLiteral("\\b(?i)rad2deg\\b"),
         QStringLiteral("\\b(?i)grad2deg\\b")
     };
+
     for (const QString &pattern : trigonometryPatterns) {
         rule.pattern = QRegularExpression(pattern);
         rule.format = trigonometry;
@@ -164,7 +121,6 @@ Highlighter::Highlighter(QTextDocument *parent)
         rule.format = stringProcessing;
         highlightingRules.append(rule);
     }
-
 
     /* fundamental Types */
     fundamentalTypes.setForeground(QColor(163,155,8));
@@ -202,8 +158,8 @@ Highlighter::Highlighter(QTextDocument *parent)
         highlightingRules.append(rule);
     }
 
-        /* IO Package */
-        IOpackage.setForeground(QColor(17, 102, 240));
+    /* IO Package */
+    IOpackage.setForeground(QColor(17, 102, 240));
     const QString IOpackagePatterns[]={
 
         /* File I/O function */
@@ -214,11 +170,9 @@ Highlighter::Highlighter(QTextDocument *parent)
         QStringLiteral("\\b(?i)getline\\b"),
         QStringLiteral("\\b(?i)eof\\b"),
 
-
         /* Basic I/O function */
         QStringLiteral("\\bprint\\b"),
         QStringLiteral("\\bprintln\\b"),
-
 
         /* vector operation function */
         QStringLiteral("\\ball_true\\b"),
@@ -248,7 +202,6 @@ Highlighter::Highlighter(QTextDocument *parent)
         rule.format = IOpackage;
         highlightingRules.append(rule);
     }
-
 
     /* loop And Control Structure */
     loopAndControlStructure.setFontWeight(QFont::Bold);
@@ -283,20 +236,12 @@ Highlighter::Highlighter(QTextDocument *parent)
     rule.format = classFormat;
     highlightingRules.append(rule);
 
-
-
-
-
-
-
-
     /*   functionFormat  */
     /*functionFormat.setFontItalic(true);
     functionFormat.setForeground(Qt::blue);
     rule.pattern = QRegularExpression(QStringLiteral("\\b[A-Za-z0-9_]+(?=\\()"));
     rule.format = functionFormat;
     highlightingRules.append(rule);*/
-
 
     /* digits */
     digit.setForeground(QColor(128, 0, 0));
@@ -339,24 +284,18 @@ Highlighter::Highlighter(QTextDocument *parent)
     multiLineCommentFormat.setForeground(Qt::darkGreen);
     commentStartExpression = QRegularExpression(QStringLiteral("/\\*"));
     commentEndExpression = QRegularExpression(QStringLiteral("\\*/"));
-
-
 }
 
 void Highlighter::highlightBlock(const QString &text )
 {
-
     for (const HighlightingRule &rule : qAsConst(highlightingRules)) {
         QRegularExpressionMatchIterator matchIterator = rule.pattern.globalMatch(text);
         while (matchIterator.hasNext()) {
             QRegularExpressionMatch match = matchIterator.next();
             setFormat(match.capturedStart(), match.capturedLength(), rule.format);
-
         }
     }
-
     setCurrentBlockState(0);
-
     int startIndex = 0;
     if (previousBlockState() != 1)
         startIndex = text.indexOf(commentStartExpression);
@@ -375,25 +314,5 @@ void Highlighter::highlightBlock(const QString &text )
         setFormat(startIndex, commentLength, multiLineCommentFormat);
         startIndex = text.indexOf(commentStartExpression, startIndex + commentLength);
     }
-
-
-
-
-
-
-    //        setCurrentBlockState(0);
-
-    //        for (const HighlightingRule &brace : qAsConst(braceRules)) {
-    //            QRegularExpressionMatchIterator matchIterator = brace.pattern.globalMatch(text);
-    //            while (matchIterator.hasNext()) {
-    //                QRegularExpressionMatch match = matchIterator.next();
-    //                qDebug()<< currentBlock().position();
-
-    //            }
-    //        }
-
-
-
-
 }
 
