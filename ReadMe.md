@@ -9,7 +9,7 @@ This is a Qt based Code editor
 ## Abilities
 1. Auto close bracketing.
 2. syntax highlighting.(based on exprTK librari's keywords)
-3. Auto indentation.
+3. Indentation.
 4. bracket matching
 5. commenting
 
