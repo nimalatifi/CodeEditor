@@ -1,6 +1,6 @@
 NIMACodeEditor v 1.0
 
-This a Qt based Code editor 
+This is a Qt based Code editor 
 
 ## Requirements
 0. C++11 featured compiler.
