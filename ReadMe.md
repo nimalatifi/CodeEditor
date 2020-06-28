@@ -1,4 +1,4 @@
-NIMACodeEditor v 1.0
+CodeEditor v 1.0
 
 This is a Qt based Code editor 
 
